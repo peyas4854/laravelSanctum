@@ -64,6 +64,8 @@
 </template>
 
 <script>
+import User from "../apis/User";
+
 export default {
     name: "Register",
     data() {
@@ -79,15 +81,15 @@ export default {
     },
     methods: {
         register() {
-            // User.register(this.form)
-            //     .then(() => {
-            //         this.$router.push({ name: "Login" });
-            //     })
-            //     .catch(error => {
-            //         if (error.response.status === 422) {
-            //             this.errors = error.response.data.errors;
-            //         }
-            //     });
+            User.register(this.form)
+                .then(() => {
+                    this.$router.push({ name: "Login" });
+                })
+                .catch(error => {
+                    if (error.response.status === 422) {
+                        this.errors = error.response.data.errors;
+                    }
+                });
         }
     }
 }
